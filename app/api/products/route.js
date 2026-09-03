@@ -10,7 +10,10 @@ export async function GET() {
   } catch (error) {
     console.error(error);
 
-    return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch products" },
+      { status: 500 },
+    );
   }
 }
 
@@ -21,7 +24,10 @@ export async function POST(request) {
 
     const { name, price, quantity } = body;
 
-    const [result] = await db.query("INSERT INTO products (name, price, quantity) VALUES (?, ?, ?)", [name, price, quantity]);
+    const [result] = await db.query(
+      "INSERT INTO products (name, price, quantity) VALUES (?, ?, ?)",
+      [name, price, quantity],
+    );
 
     return NextResponse.json(
       {
@@ -35,6 +41,9 @@ export async function POST(request) {
   } catch (error) {
     console.error(error);
 
-    return NextResponse.json({ error: "Failed to create product" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to create product" },
+      { status: 500 },
+    );
   }
 }
